@@ -49,6 +49,7 @@ const CourseList = () => {
                 ) {
                   return value;
                 }
+                return null;
               })
               .map((courseinfo) => (
                 <CourseCard key={courseinfo.id} course={courseinfo} />
