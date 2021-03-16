@@ -1,0 +1,17 @@
+@import "style/variables";
+
+.ManageCourses {
+  display: flex;
+  flex: 5 ;
+  flex-direction: column;
+  .custom-button{
+    max-width: 400px;
+    margin: auto;
+    background-color: darkorange;
+  }
+
+  svg {
+    cursor: pointer;
+  }
+}
+

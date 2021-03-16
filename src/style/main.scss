@@ -1,0 +1,15 @@
+@import "./variables";
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+main {
+  min-height: 100%;
+  margin-bottom: -50 px;
+}
+
+footer {
+  height: 50px;
+}
