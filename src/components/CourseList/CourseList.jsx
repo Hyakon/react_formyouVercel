@@ -13,44 +13,49 @@ const CourseList = () => {
   const [categoryList, setCategoryList] = useState([]);
 
   const handleCategoryFilter = (list) => {
-    setCategoryList(list)
-  }
+    setCategoryList(list);
+  };
 
   useEffect(() => {
-    if (categoryList.length < 1){
+    if (categoryList.length < 1) {
       get("/courses");
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     } else {
-      const categories = categoryList.join()
-      get(`/courses?categories=${categories}`)
+      const categories = categoryList.join();
+      get(`/courses?categories=${categories}`);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryList]);
 
   useEffect(() => {
     setCourse(data);
-  }, [data])
-  
+  }, [data]);
+
   return (
-      <div className="CourseList">
-        <div className="displaysearchbar">
-          <SearchBar getInput={setInput}/>
-          <CategoryList handleCategoryFilter={handleCategoryFilter}/>
-        </div>
-          {error && <h4>{error}</h4>}
-          {(isLoading && <Loading />) ||
-          (course && (
-            <div className="row">
-              {course.filter((value) => {
-                if(input === ""){return value}
-                else if (value.title.toLowerCase().includes(input.toLowerCase())){
-                  return value}
-              }).map((courseinfo) => (
+    <div className="CourseList">
+      <div className="displaysearchbar">
+        <SearchBar getInput={setInput} />
+        <CategoryList handleCategoryFilter={handleCategoryFilter} />
+      </div>
+      {error && <h4>{error}</h4>}
+      {(isLoading && <Loading />) ||
+        (course && (
+          <div className="row">
+            {course
+              .filter((value) => {
+                if (input === "") {
+                  return value;
+                } else if (
+                  value.title.toLowerCase().includes(input.toLowerCase())
+                ) {
+                  return value;
+                }
+              })
+              .map((courseinfo) => (
                 <CourseCard key={courseinfo.id} course={courseinfo} />
               ))}
-            </div>
-          ))
-        }
-      </div>
+          </div>
+        ))}
+    </div>
   );
 };
 
